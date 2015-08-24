@@ -4,9 +4,15 @@
   "description": "Example app written with qozon",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "static": "http-server -p 2002 public",
+    "build": "browserify -o public/index.compiled.js app/index.js"
   },
   "dependencies": {
+    "http-server": "0.8.0",
     "qozon": ".."
+  },
+  "devDependencies": {
+    "browserify": "11.0.1"
   }
 }

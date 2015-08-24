@@ -2,7 +2,8 @@
   "name": "qozon",
   "version": "0.0.0",
   "description": "Universal web application framework based on React and descript",
-  "main": "index.js",
+  "main": "server.js",
+  "browser": "browser.js",
   "scripts": {},
   "keywords": [
     "universal",

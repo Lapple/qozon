@@ -1,12 +1,9 @@
-var App = require('./components/app');
-var List = require('./components/list');
+var qozon = require('qozon');
 
-module.exports = {
-    component: App,
-    childRoutes: [
-        {
-            path: '/',
-            component: List
-        }
-    ]
-};
+var routes = require('./routes');
+var store = require('./store');
+
+qozon.bootstrap({
+    routes: routes,
+    store: store
+});
