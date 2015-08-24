@@ -1,18 +1,18 @@
-var connect = require('qozon').connect;
+var qozon = require('qozon');
 
 var React = require('react');
 var D = React.DOM;
 
 var List = React.createClass({
+    // FIXME: This is going to require a unique display name on each
+    // connected component.
+    displayName: 'List',
     statics: {
         models: {
-            list: {
-                id: 'models/list',
-                params: function(location) {
-                    return {
-                        start: Number(location.query.start)
-                    };
-                }
+            list: function(location) {
+                return qozon.request('models/list', {
+                    start: Number(location.query.start)
+                });
             }
         }
     },
@@ -26,4 +26,4 @@ var List = React.createClass({
     }
 });
 
-module.exports = connect(List);
+module.exports = qozon.connect(List);

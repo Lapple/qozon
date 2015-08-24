@@ -4,3 +4,4 @@ exports.bootstrap = function() {
 };
 exports.createStore = require('./lib/create-store');
 exports.connect = require('./lib/connect');
+exports.request = require('./lib/request');
