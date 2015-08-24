@@ -1,0 +1,12 @@
+{
+  "name": "qozon-example",
+  "version": "0.0.1",
+  "description": "Example app written with qozon",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "qozon": ".."
+  }
+}

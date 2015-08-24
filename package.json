@@ -1,0 +1,31 @@
+{
+  "name": "qozon",
+  "version": "0.0.0",
+  "description": "Universal web application framework based on React and descript",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "universal",
+    "isomorphic",
+    "react",
+    "descript"
+  ],
+  "author": "Aziz Yuldoshev",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Lapple/qozon.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "descript": "0.0.61",
+    "extend": "3.0.0",
+    "nommon": "0.0.38",
+    "pff": "1.0.0",
+    "react-redux": "0.9.0",
+    "redux": "1.0.1"
+  },
+  "peerDependencies": {
+    "react": "0.13.3",
+    "react-router": "1.0.0-beta3"
+  }
+}
