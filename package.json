@@ -26,7 +26,8 @@
     "redux": "1.0.1"
   },
   "peerDependencies": {
-    "react": "0.13.3",
+    "react": "0.14.0-beta3",
+    "react-dom": "0.14.0-beta3",
     "react-router": "1.0.0-beta3"
   }
 }
