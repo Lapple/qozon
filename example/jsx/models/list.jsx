@@ -1,9 +1,9 @@
 (
     function(params) {
         return de.value([
-            params.start,
-            params.start + 1,
-            params.start + 2
+            Number(params.start),
+            Number(params.start) + 1,
+            Number(params.start) + 2
         ]);
     }
 )

@@ -14,7 +14,7 @@ var List = React.createClass({
         models: {
             list: function(location) {
                 return qozon.request('models/list', {
-                    start: Number(location.query.start)
+                    start: location.query.start
                 });
             }
         }
