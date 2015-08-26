@@ -6,11 +6,11 @@ var Promise = require('promise');
 var extend = require('extend');
 var history = require('react-router/lib/BrowserHistory').history;
 
-var C = require('./consts');
-var after = require('./after');
-var modelKey = require('./model-key');
-var extractModels = require('./extract-models');
-var rootComponent = require('./root-component');
+var C = require('../lib/consts');
+var after = require('../lib/after');
+var modelKey = require('../lib/model-key');
+var extractModels = require('../lib/extract-models');
+var rootComponent = require('../lib/root-component');
 
 function bootstrap(options) {
     var store = options.store;

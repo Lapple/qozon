@@ -1,7 +1,7 @@
-exports.start = require('./lib/start');
+exports.start = require('./methods/start');
 exports.bootstrap = function() {
     throw new Error('qozon.bootstrap is not available on the server.');
 };
-exports.createStore = require('./lib/create-store');
-exports.connect = require('./lib/connect');
-exports.request = require('./lib/request');
+exports.createStore = require('./methods/create-store');
+exports.connect = require('./methods/connect');
+exports.request = require('./methods/request');

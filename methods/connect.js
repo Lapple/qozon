@@ -1,5 +1,5 @@
 var connect = require('react-redux').connect;
-var dependencyKey = require('./dependency-key');
+var dependencyKey = require('../lib/dependency-key');
 
 function select(Component, state) {
     return Object.keys(Component.models).reduce(function(acc, id) {
