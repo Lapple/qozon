@@ -16,13 +16,16 @@ var List = React.createClass({
                 return qozon.request('models/list', {
                     start: location.query.start
                 });
+            },
+            title: function() {
+                return qozon.request('models/list-title');
             }
         }
     },
     mixins: [Navigation],
     render: function() {
         return D.div(null,
-            D.strong(null, 'List of numbers'),
+            D.strong(null, this.props.title),
             ' ',
             link(
                 { to: '/', query: { start: 2 } },
