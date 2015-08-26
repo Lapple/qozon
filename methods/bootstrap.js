@@ -8,7 +8,7 @@ var history = require('react-router/lib/BrowserHistory').history;
 
 var C = require('../lib/consts');
 var after = require('../lib/after');
-var modelKey = require('../lib/model-key');
+var computeCacheKey = require('../lib/compute-cache-key');
 var extractModels = require('../lib/extract-models');
 var rootComponent = require('../lib/root-component');
 
@@ -38,20 +38,21 @@ function bootstrap(options) {
         var models = extractModels(this.state);
         var request = new ModelsRequest();
 
+        var cache = store.getState().cache;
+
         Promise.all(
             Object.keys(models).map(function(key) {
                 var model = models[key];
 
-                var cache = store.getState().cache;
-                var cachedModelKey = modelKey(model.id, model.params);
-                var cachedModel = cache[cachedModelKey];
+                var modelKey = computeCacheKey(model.id, model.params);
+                var cachedModelData = cache[modelKey];
 
-                if (cachedModel) {
+                if (cachedModelData) {
                     return new Promise(function(resolve) {
                         resolve(
                             pair(key, {
-                                key: cachedModelKey,
-                                data: cachedModel
+                                key: modelKey,
+                                data: cachedModelData
                             })
                         );
                     });

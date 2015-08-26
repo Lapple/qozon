@@ -3,7 +3,7 @@ var assert = require('assert');
 var de = require('descript');
 var pff = require('pff');
 
-var modelKey = require('../../lib/model-key');
+var computeCacheKey = require('../../lib/compute-cache-key');
 
 function request(id, params) {
     assert.equal(typeof id, 'string');
@@ -14,7 +14,7 @@ function request(id, params) {
     var filename = pff('./%s.jsx', id);
 
     return {
-        key: modelKey(id, params),
+        key: computeCacheKey(id, params),
         data: new de.Block.Include(filename, {
             params: function() {
                 return params;
