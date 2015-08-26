@@ -3,6 +3,7 @@ var Promise = require('promise');
 var extend = require('extend');
 var history = require('react-router/lib/BrowserHistory').history;
 
+var C = require('../lib/consts');
 var after = require('../lib/after');
 var computeCacheKey = require('../lib/compute-cache-key');
 var extractModels = require('../lib/extract-models');
@@ -14,7 +15,7 @@ function bootstrap(options) {
 
     document.addEventListener('DOMContentLoaded', function() {
         var models = JSON.parse(
-            document.getElementById('models').innerHTML.trim()
+            document.getElementById(C.MODELS_CONTAINER_ID).innerHTML.trim()
         );
 
         populate(store, models);
@@ -27,7 +28,7 @@ function bootstrap(options) {
                 // no need to request data, it's already provided.
                 onUpdate: after(1, onRouterUpdate)
             }),
-            document.getElementById('app')
+            document.getElementById(C.APP_CONTAINER_ID)
         );
     });
 
