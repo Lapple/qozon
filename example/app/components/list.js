@@ -24,6 +24,10 @@ var List = React.createClass({
     },
     mixins: [Navigation],
     render: function() {
+        if (this.props.loadingModels) {
+            return D.span(null, 'Loading..');
+        }
+
         return D.div(null,
             D.strong(null, this.props.title),
             ' ',

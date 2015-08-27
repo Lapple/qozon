@@ -36,6 +36,11 @@ function bootstrap(options) {
         var models = extractModels(this.state);
         var request = new ModelsRequest();
 
+        store.dispatch({
+            type: 'FLUSH_MODELS',
+            models: models
+        });
+
         var cache = store.getState().cache;
 
         Promise.all(

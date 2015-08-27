@@ -3,10 +3,18 @@ var computeDependencyKey = require('../lib/compute-dep-key');
 
 function select(Component, state) {
     return Object.keys(Component.models).reduce(function(acc, id) {
-        acc[id] = state.models[computeDependencyKey(Component, id)].data;
+        var key = computeDependencyKey(Component, id);
+
+        if (state.models[key]) {
+            acc[id] = state.models[key].data;
+        } else {
+            acc.loadingModels = true;
+        }
 
         return acc;
-    }, {});
+    }, {
+        loadingModels: false
+    });
 }
 
 module.exports = function(Component) {

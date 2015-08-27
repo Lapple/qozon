@@ -1,6 +1,8 @@
 var redux = require('redux');
 var extend = require('extend');
 
+var computeCacheKey = require('../lib/compute-cache-key');
+
 function baseReducer(next, state, action) {
     switch (action.type) {
         case 'POPULATE_MODELS':
@@ -16,6 +18,26 @@ function baseReducer(next, state, action) {
             return {
                 models: models,
                 cache: extend(state.cache, cache)
+            };
+
+        case 'FLUSH_MODELS':
+            var models = action.models;
+
+            var flushed = Object.keys(models).reduce(function(acc, id) {
+                var descriptor = models[id];
+                var key = computeCacheKey(descriptor.id, descriptor.params);
+                var existingEntry = state.models[id];
+
+                if (existingEntry && existingEntry.key !== key) {
+                    acc[id] = null;
+                }
+
+                return acc;
+            }, {});
+
+            return {
+                models: extend(state.models, flushed),
+                cache: state.cache
             };
 
         default:

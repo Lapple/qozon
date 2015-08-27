@@ -13,6 +13,20 @@ function start(options) {
         modules = extend(modules, options.modules);
     }
 
+    de.server.route = function(req, res, context) {
+        var pathname = context.request.url.pathname || '';
+
+        if (pathname.charAt(0) === '/') {
+            pathname = pathname.substr(1);
+        }
+
+        if (pathname === 'models.jsx') {
+            return pathname;
+        } else {
+            return 'index.jsx';
+        }
+    };
+
     de.server.init({
         port: options.port,
         rootdir: options.rootdir,
