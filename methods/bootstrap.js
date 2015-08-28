@@ -7,7 +7,6 @@ var history = require('react-router/lib/BrowserHistory').history;
 
 var C = require('../lib/consts');
 var after = require('../lib/after');
-var computeCacheKey = require('../lib/compute-cache-key');
 var extractModels = require('../lib/extract-models');
 var rootComponent = require('../lib/root-component');
 var ModelsRequest = require('../lib/models-request');
