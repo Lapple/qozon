@@ -1,6 +1,8 @@
-var render = require('react-dom').render;
 var Promise = require('promise');
 var extend = require('extend');
+var unique = require('array-uniq');
+
+var render = require('react-dom').render;
 var history = require('react-router/lib/BrowserHistory').history;
 
 var C = require('../lib/consts');
@@ -44,30 +46,33 @@ function bootstrap(options) {
         var cache = store.getState().cache;
 
         Promise.all(
-            Object.keys(models).map(function(key) {
-                var model = models[key];
+            unique(
+                models.map(function(m) {
+                    var cachedModelData = cache[m.modelKey];
 
-                var modelKey = computeCacheKey(model.id, model.params);
-                var cachedModelData = cache[modelKey];
+                    if (cachedModelData) {
+                        return new Promise(function(resolve) {
+                            resolve(
+                                pair(m.modelKey, cachedModelData)
+                            );
+                        });
+                    }
 
-                if (cachedModelData) {
-                    return new Promise(function(resolve) {
-                        resolve(
-                            pair(key, {
-                                key: modelKey,
-                                data: cachedModelData
-                            })
-                        );
-                    });
-                }
+                    return request.add(m.descriptor);
+                })
+            )
+        ).done(function(resolutions) {
+            var data = merge(resolutions);
 
-                return request.add(key, model);
-            })
-        ).done(function(data) {
             populate(
                 store,
-                data.reduce(function(acc, m) {
-                    return extend(acc, m);
+                models.reduce(function(acc, m) {
+                    acc[m.componentKey] = {
+                        data: data[m.modelKey],
+                        key: m.modelKey
+                    };
+
+                    return acc;
                 }, {})
             );
         });
@@ -87,6 +92,12 @@ function pair(key, value) {
     var p = {};
     p[key] = value;
     return p;
+}
+
+function merge(objects) {
+    return objects.reduce(function(acc, object) {
+        return extend(acc, object);
+    }, {});
 }
 
 module.exports = bootstrap;

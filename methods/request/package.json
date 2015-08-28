@@ -1,6 +1,0 @@
-{
-  "name": "qozon-request",
-  "description": "Data request logic for browser and server",
-  "main": "server.js",
-  "browser": "browser.js"
-}
