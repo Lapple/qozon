@@ -6,13 +6,14 @@ function select(Component, state) {
         var key = computeDependencyKey(Component, id);
 
         if (state.models[key]) {
-            acc[id] = state.models[key].data;
+            acc.models[id] = state.models[key].data;
         } else {
             acc.loadingModels = true;
         }
 
         return acc;
     }, {
+        models: {},
         loadingModels: false
     });
 }

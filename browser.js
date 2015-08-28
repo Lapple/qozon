@@ -5,3 +5,4 @@ exports.bootstrap = require('./methods/bootstrap');
 exports.createStore = require('./methods/create-store');
 exports.connect = require('./methods/connect');
 exports.request = require('./methods/request');
+exports.DispatchMixin = require('./methods/dispatch-mixin');

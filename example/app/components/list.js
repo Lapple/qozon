@@ -1,6 +1,5 @@
 var qozon = require('qozon');
 var React = require('react');
-var Navigation = require('react-router').Navigation;
 var Link = require('react-router').Link;
 
 var D = React.DOM;
@@ -13,29 +12,30 @@ var List = React.createClass({
     statics: {
         models: {
             list: function(location) {
-                return qozon.request('models/list', {
+                return qozon.request('list', {
                     start: location.query.start
                 });
             },
             title: function() {
-                return qozon.request('models/list-title');
+                return qozon.request('list-title');
             }
         }
     },
-    mixins: [Navigation],
     render: function() {
         if (this.props.loadingModels) {
             return D.span(null, 'Loading..');
         }
 
+        var models = this.props.models;
+
         return D.div(null,
-            D.strong(null, this.props.title),
+            D.strong(null, models.title),
             ' ',
             link(
                 { to: '/', query: { start: 2 } },
                 'Increment'
             ),
-            this.props.list.map(function(number) {
+            models.list.map(function(number) {
                 return D.div({ key: number }, number);
             })
         );
